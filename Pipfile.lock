@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f28fb3155dcfb89d037fb13c21956c5dff4acf161dbb63226da73cede66df98b"
+            "sha256": "591187e95a35a0f0a010f6584287c342ee3eb5a56f8b774ce7db3c4efe262e5e"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -9,9 +9,9 @@
             "os_name": "posix",
             "platform_machine": "x86_64",
             "platform_python_implementation": "CPython",
-            "platform_release": "4.14.0-3-amd64",
+            "platform_release": "4.15.0-1-amd64",
             "platform_system": "Linux",
-            "platform_version": "#1 SMP Debian 4.14.13-1 (2018-01-14)",
+            "platform_version": "#1 SMP Debian 4.15.4-1 (2018-02-18)",
             "python_full_version": "3.6.4",
             "python_version": "3.6",
             "sys_platform": "linux"
@@ -40,12 +40,24 @@
             ],
             "version": "==0.0.10"
         },
+        "mpmath": {
+            "hashes": [
+                "sha256:04d14803b6875fe6d69e6dccea87d5ae5599802e4b1df7997bddd2024001050c"
+            ],
+            "version": "==1.0.0"
+        },
         "sanic": {
             "hashes": [
                 "sha256:18a3bd729093ac93a245849c44045c505a11e6d36da5bf231cb986bfb1e3c14c",
                 "sha256:22b1a6f1dc55db8a136335cb0961afa95040ca78aa8c78425a40d91e8618e60e"
             ],
             "version": "==0.7.0"
+        },
+        "sympy": {
+            "hashes": [
+                "sha256:ac5b57691bc43919dcc21167660a57cc51797c28a4301a6144eff07b751216a4"
+            ],
+            "version": "==1.1.1"
         },
         "ujson": {
             "hashes": [
