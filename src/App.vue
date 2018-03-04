@@ -1,36 +1,25 @@
 <template>
-  <div id="app">
-    <div id="input">
+<div id="app">
+    <div id="interpreter">
           <textarea v-model="expr" v-on:input="parseExpr"></textarea>
     </div>
-    <div id="output">
-      <table>
-        <thead>
-          <tr>
-            <th>A</th>
-            <th>B</th>
-            <th>C</th>
-          </tr>
-        </thead>
-        <tbody>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tbody>
-      </table>
-    </div>
-  </div>
+    <input-table v-on:valueSet="valueSet" />
 </template>
 
 <script>
 import axios from 'axios'
+import InputTable from '@/components/InputTable.vue'
 
 export default {
   name: 'App',
   data: function () {
     return {
-      expr: ''
+      expr: '',
+      inputTable: {}
     }
+  },
+  components: {
+    InputTable
   },
   methods: {
     parseExpr: function () {
@@ -41,6 +30,11 @@ export default {
       }).catch(function (error) {
         console.log(error)
       })
+    },
+    valueSet: function (name, value) {
+      this.expr += '\n=> ' + name + ' = ' + value
+      this.inputTable[name] = value
+      console.log('The input table', this.inputTable)
     }
   }
 }
