@@ -3,7 +3,7 @@
     <div id="interpreter">
           <textarea v-model="expr" v-on:input="parseExpr"></textarea>
     </div>
-    <input-table v-on:valueSet="valueSet" />
+    <input-table v-on:valueSet="valueSet" v-on:exprSet="exprSet" />
 </template>
 
 <script>
@@ -33,8 +33,19 @@ export default {
     },
     valueSet: function (name, value) {
       this.expr += '\n=> ' + name + ' = ' + value
-      this.inputTable[name] = value
+      this.inputTable[name] = Number(value)
       console.log('The input table', this.inputTable)
+    },
+    exprSet: function (expr, row) {
+      axios.post('/eval', {
+        expr: expr,
+        table: this.inputTable
+      }).then(function (response) {
+        console.log(response)
+        row.value = response.data.result
+      }).catch(function (error) {
+        console.log(error)
+      })
     }
   }
 }

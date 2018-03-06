@@ -4,7 +4,7 @@
     <input v-model="name" v-on:change="nameSet" type="text" name="name" />
   </th>
   <th>
-    <input type="text" name="struct" />
+    <input v-model="expr" v-on:change="exprSet" type="text" name="struct" />
   </th>
   <th>
     <input v-model="value" v-on:change="valueSet" type="text" name="value" />
@@ -24,14 +24,14 @@ export default {
   methods: {
     nameSet: function () {
       this.$emit('nameSet', this.name, this.value)
-      console.log('new name', this.name)
     },
     valueSet: function () {
       this.$emit('valueSet', this.name, this.value)
-      console.log('new value', this.value)
+    },
+    exprSet: function () {
+      this.$emit('exprSet', this.expr, this)
     }
   }
-
 }
 </script>
 

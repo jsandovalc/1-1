@@ -9,9 +9,13 @@
       </tr>
     </thead>
     <tbody>
-      <input-command v-on:nameSet="nameSet" v-on:valueSet="valueSet" />
+      <component v-for="row in rows" v-bind:is="row" v-on:nameSet="nameSet"
+                 v-on:valueSet="valueSet" v-on:exprSet="exprSet">
+      </component>
+      <!-- <input-command v-on:nameSet="nameSet" v-on:valueSet="valueSet" /> -->
     </tbody>
   </table>
+  <button v-on:click="addRow">+</button>
 </div>
 </template>
 
@@ -20,6 +24,11 @@ import InputCommand from '@/InputCommand.vue'
 
 export default {
   name: 'InputTable',
+  data: function () {
+    return {
+      rows: ['inputCommand']
+    }
+  },
   components: {
     InputCommand
   },
@@ -29,6 +38,12 @@ export default {
     },
     valueSet: function (name, value) {
       this.$emit('valueSet', name, value)
+    },
+    addRow: function () {
+      this.rows.push('inputCommand')
+    },
+    exprSet: function (expr, row) {
+      this.$emit('exprSet', expr, row)
     }
   }
 }
