@@ -9,7 +9,13 @@ app.static('/static', './dist/static')
 async def index(request):
     return await file('dist/index.html')
 
-@app.route('/parse', methods=['POST'])
+@app.route('/eval', methods=['POST'])
 async def parse(request):
-    """Parse expression, return"""
-    return json({'message': 'empty'})
+    """Parse expression, return eval(expr).
+
+    Request must include `expr` and `table`.
+
+    """
+    print(request.json)
+    return json({'result': eval(request.json['expr'],
+                                request.json['table'])})
