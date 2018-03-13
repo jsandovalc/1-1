@@ -3,12 +3,19 @@
     <div id="interpreter">
           <textarea v-model="expr" v-on:input="parseExpr"></textarea>
     </div>
-    <input-table v-on:valueSet="valueSet" v-on:exprSet="exprSet" />
+    <div id="input-table">
+      <input-table v-on:valueSet="valueSet" v-on:exprSet="exprSet" />
+    </div>
+    <div id="graph-area">
+      <graph-area/>
+    </div>
+</div>
 </template>
 
 <script>
 import axios from 'axios'
 import InputTable from '@/components/InputTable.vue'
+import GraphArea from '@/GraphArea.vue'
 
 export default {
   name: 'App',
@@ -19,7 +26,8 @@ export default {
     }
   },
   components: {
-    InputTable
+    InputTable,
+    GraphArea
   },
   methods: {
     parseExpr: function () {
