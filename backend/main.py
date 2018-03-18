@@ -52,7 +52,7 @@ class PolishNotationVisitor(ast.NodeVisitor):
         self.pn.append(dict(label=node.n, type='num'))
 
 
-@app.route('/display')
+@app.route('/display', methods=['POST'])
 async def display(request):
     """Return a json to display in client.
 
