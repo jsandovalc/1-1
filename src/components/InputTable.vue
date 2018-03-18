@@ -12,7 +12,6 @@
       <component v-for="row in rows" v-bind:is="row" v-on:nameSet="nameSet"
                  v-on:valueSet="valueSet" v-on:exprSet="exprSet">
       </component>
-      <!-- <input-command v-on:nameSet="nameSet" v-on:valueSet="valueSet" /> -->
     </tbody>
   </table>
   <button v-on:click="addRow">+</button>

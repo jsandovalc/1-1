@@ -1,13 +1,13 @@
 <template>
 <div id="app">
     <div id="interpreter">
-          <textarea v-model="expr" v-on:input="parseExpr"></textarea>
+      <textarea v-model="expr" v-on:input="parseExpr"></textarea>
     </div>
     <div id="input-table">
       <input-table v-on:valueSet="valueSet" v-on:exprSet="exprSet" />
     </div>
-    <div id="graph-area">
-      <graph-area/>
+    <div  id="graph-area">
+      <graph-area :expr="visExpr" />
     </div>
 </div>
 </template>
@@ -22,6 +22,7 @@ export default {
   data: function () {
     return {
       expr: '',
+      visExpr: [],
       inputTable: {}
     }
   },
@@ -39,17 +40,30 @@ export default {
         console.log(error)
       })
     },
+
     valueSet: function (name, value) {
       this.expr += '\n=> ' + name + ' = ' + value
       this.inputTable[name] = Number(value)
       console.log('The input table', this.inputTable)
     },
+
     exprSet: function (expr, row) {
+      var self = this
+
+      // Update graph area
+      axios.post('/display', {
+        expr: expr
+      }).then(function (response) {
+        self.visExpr = response.data
+      }).catch(function (error) {
+        console.log('error', error)
+      })
+
+      // get the result
       axios.post('/eval', {
         expr: expr,
         table: this.inputTable
       }).then(function (response) {
-        console.log(response)
         row.value = response.data.result
       }).catch(function (error) {
         console.log(error)
