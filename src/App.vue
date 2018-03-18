@@ -1,14 +1,16 @@
 <template>
 <div id="app">
-    <div id="interpreter">
+  <div class="row">
+    <div id="interpreter" class="4u 12u(mobile) special">
       <textarea v-model="expr" v-on:input="parseExpr"></textarea>
     </div>
-    <div id="input-table">
+    <div id="input-table" class="8u 12u(mobile) special">
       <input-table v-on:valueSet="valueSet" v-on:exprSet="exprSet" />
     </div>
-    <div  id="graph-area">
-      <graph-area :expr="visExpr" />
-    </div>
+  </div>
+  <div  id="graph-area">
+    <graph-area :expr="visExpr" />
+  </div>
 </div>
 </template>
 

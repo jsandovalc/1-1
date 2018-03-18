@@ -51,7 +51,7 @@ export default {
 
 <style scoped>
 svg {
-  width: 300px;
+  width: 100%;
   height: 300px;
   border-radius: 10px;
   border: solid 2px #ccc
